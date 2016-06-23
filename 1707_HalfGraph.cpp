@@ -50,7 +50,7 @@ int main(){
 			graph[u].push_back(v);
 			graph[v].push_back(u);
 		}
-		memset(bi, -1, (V + 1));
+		memset(bi, -1, (V + 1)*sizeof(int));
 		bool res = true;
 		for (int i = 1; i <= V; i++){
 			if (bi[i] == -1){
