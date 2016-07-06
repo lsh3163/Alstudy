@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<iostream>
+#include<vector>
+using namespace std;
+int main(){
+	int T;
+	cin >> T;
+	while (T--){
+		int n;
+		cin >> n;
+		vector<bool> v;
+		v.resize(n + 1, false);
+		int round = 1;
+		while (round <= n){
+			for (int i = round; i <= n; i += round){
+				v[i] = !v[i];
+			}
+			round++;
+		}
+		int answer = 0;
+		for (int i = 1; i <= n; i++){
+			if (v[i]){
+				answer++;
+			}
+		}
+		printf("%d\n", answer);
+	}
+}
