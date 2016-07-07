@@ -37,10 +37,10 @@ void bfs(int root){
 	//queue가 빈다는 것은 더이상 방문할 정점이 없거나
 	//해당 정점에서의 간선이 존재 하지 않는다는 뜻!
 	while (!q.empty()){
-		int next = q.front();
+		int now = q.front();
 		q.pop();
 		for (int i = 1; i <= N; i++){
-			if (!visited[i] && graph[next][i] == 1){
+			if (!visited[i] && graph[now][i] == 1){
 				visited[i] = true;
 				printf("%d ", i);
 				q.push(i);
