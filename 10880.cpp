@@ -1,14 +1,15 @@
 #include<stdio.h>
 #include<iostream>
+#include<string.h>
 #include<vector>
 #include<queue>
 using namespace std;
 int T;
 int N, M;
-vector<vector<int> > graph;
+
 bool visited[200001];
 int res;
-void dfs(int n,int des,int length){
+void dfs(vector<vector<int> > &graph, int n, int des, int length){
 	if (n == des){
 		res = max(res, length);
 		return;
@@ -18,20 +19,18 @@ void dfs(int n,int des,int length){
 	for (int i = 0; i < len; i++){
 		int next = graph[n][i];
 		if (!visited[next]){
-			dfs(next, des, length + 1);
+			dfs(graph,next, des, length + 1);
 		}
 	}
-
 }
 int main(){
 	cin >> T;
 	while (T--){
-		cin >> N; cin >> M;
-		graph.clear();
-		graph.resize(N + 1);
+		scanf("%d %d",&N,&M);
+		vector<vector<int> > graph(N+1);
 		while (M--){
 			int u, v;
-			cin >> u; cin >> v;
+			scanf("%d %d",&u,&v);
 			graph[u].push_back(v);
 			graph[v].push_back(u);
 		}
@@ -39,11 +38,11 @@ int main(){
 		cin >> question;
 		while (question--){
 			int start, destination;
-			cin >> start >> destination;
+			scanf("%d %d",&start,&destination);
 			res = 0;
-			dfs(start,destination,0);
+			dfs(graph,start,destination,0);
 			printf("%d\n", res + 1);
-			memset(visited, false, sizeof(visited));
+			memset(visited, false, N+1);
 		}
 	}
 }
